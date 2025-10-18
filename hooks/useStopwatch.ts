@@ -5,7 +5,8 @@ export const useStopwatch = () => {
   const [isRunning, setIsRunning] = useState(false);
 
   // FIX: Initialize useRef with an initial value of undefined and update type to handle number or undefined.
-  const requestRef = useRef<number | undefined>();
+  // FIX: Pass an initial value of `undefined` to `useRef`.
+  const requestRef = useRef<number | undefined>(undefined);
   const startTimeRef = useRef<number>(0);
   const elapsedTimeRef = useRef<number>(0);
 

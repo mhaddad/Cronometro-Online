@@ -5,7 +5,6 @@ import HistoryPanel from './components/HistoryPanel';
 import type { TimeEntry } from './types';
 import { formatTime, exportToCsv } from './utils/formatters';
 
-// Adiciona a propriedade adsbygoogle ao objeto window para o TypeScript
 declare global {
     interface Window {
         adsbygoogle?: { [key: string]: unknown }[];
@@ -22,7 +21,7 @@ const AdSenseUnit: React.FC<{ className?: string, slot: string }> = ({ className
   }, []);
 
   return (
-    <div className={`flex items-center justify-center text-slate-500 bg-slate-800 w-full min-h-[90px] rounded-lg overflow-hidden ${className}`}>
+    <div className={`is-flex is-align-items-center is-justify-content-center has-text-slate-500 has-background-slate-800 w-full is-rounded ${className}`} style={{minHeight: '90px'}}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', height: '90px' }}
@@ -37,16 +36,14 @@ const AdSenseUnit: React.FC<{ className?: string, slot: string }> = ({ className
 
 
 const SeoContent: React.FC = () => (
-  <section className="w-full max-w-4xl mx-auto p-6 text-slate-400 space-y-6">
-    <h2 className="text-3xl font-bold text-white">Tudo Sobre Cronômetros</h2>
-    <div className="space-y-4">
-      <h3 className="text-2xl font-semibold text-slate-200">O que é um cronômetro?</h3>
-      <p>Um cronômetro é um instrumento projetado para medir com precisão a quantidade de tempo que decorre entre o seu acionamento e a sua desativação. O Cronômetro Online 2.0 é uma versão digital moderna, que oferece precisão, simplicidade e funcionalidades extras como histórico e modo foco.</p>
-      <h3 className="text-2xl font-semibold text-slate-200">Usos Comuns</h3>
-      <p>Cronômetros são versáteis e usados em diversas áreas: atletas medem seus tempos de corrida, cozinheiros controlam o preparo de receitas, estudantes gerenciam seu tempo de estudo (técnica Pomodoro), e profissionais otimizam a produtividade em tarefas.</p>
-      <h3 className="text-2xl font-semibold text-slate-200">Curiosidades</h3>
-      <p>O primeiro cronômetro moderno foi inventado por Nicolas Mathieu Rieussec em 1821 para cronometrar corridas de cavalos. A palavra "cronômetro" vem do grego "khronos" (tempo) e "metron" (medida).</p>
-    </div>
+  <section className="content p-6 has-text-slate-400">
+    <h2 className="title is-3 has-text-white">Tudo Sobre Cronômetros</h2>
+    <h3 className="title is-4 has-text-slate-200">O que é um cronômetro?</h3>
+    <p>Um cronômetro é um instrumento projetado para medir com precisão a quantidade de tempo que decorre entre o seu acionamento e a sua desativação. O Cronômetro Online 2.0 é uma versão digital moderna, que oferece precisão, simplicidade e funcionalidades extras como histórico e modo foco.</p>
+    <h3 className="title is-4 has-text-slate-200">Usos Comuns</h3>
+    <p>Cronômetros são versáteis e usados em diversas áreas: atletas medem seus tempos de corrida, cozinheiros controlam o preparo de receitas, estudantes gerenciam seu tempo de estudo (técnica Pomodoro), e profissionais otimizam a produtividade em tarefas.</p>
+    <h3 className="title is-4 has-text-slate-200">Curiosidades</h3>
+    <p>O primeiro cronômetro moderno foi inventado por Nicolas Mathieu Rieussec em 1821 para cronometrar corridas de cavalos. A palavra "cronômetro" vem do grego "khronos" (tempo) e "metron" (medida).</p>
   </section>
 );
 
@@ -135,28 +132,34 @@ const App: React.FC = () => {
     };
   }, [isRunning, pause, start, reset]);
 
+  const mainContainerClasses = `section is-flex is-flex-direction-column has-text-white p-4`;
+
   return (
-    <div className={`min-h-screen text-white flex flex-col items-center transition-all duration-300 p-4 ${showFocusMode ? 'bg-slate-900 justify-center' : 'bg-slate-900 justify-between'}`}>
+    <div className={`${mainContainerClasses} ${showFocusMode ? 'is-justify-content-center' : 'is-justify-content-space-between'}`} style={{minHeight: '100vh'}}>
       
-      <header className={`w-full max-w-4xl mx-auto transition-all duration-300 ${showFocusMode ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
-          <h1 className="text-4xl font-bold">Cronômetro Online <span className="text-cyan-400">2.0</span></h1>
-          <button onClick={() => setIsFocusMode(prev => !prev)} className="bg-slate-700 hover:bg-slate-600 text-sm font-semibold py-2 px-4 rounded-lg transition-colors">
-            {isFocusMode ? 'Sair do' : 'Entrar no'} Modo Foco (F)
-          </button>
+      <header className={`container ${showFocusMode ? 'is-hidden' : ''}`}>
+        <div className="level is-mobile mb-4">
+          <div className="level-left">
+             <h1 className="title is-3 has-text-white">Cronômetro Online <span className="has-text-cyan-400">2.0</span></h1>
+          </div>
+          <div className="level-right">
+             <button onClick={() => setIsFocusMode(prev => !prev)} className="button is-slate is-small has-text-weight-semibold">
+              {isFocusMode ? 'Sair do' : 'Entrar no'} Modo Foco (F)
+            </button>
+          </div>
         </div>
         <AdSenseUnit slot="5825935070" />
       </header>
       
-      <main className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto flex-grow">
-          <div className={`w-full transition-all duration-300 mb-4 ${showFocusMode ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+      <main className="container is-flex is-flex-direction-column is-align-items-center is-justify-content-center is-flex-grow-1">
+          <div className={`w-full mb-4 ${showFocusMode ? 'is-hidden' : ''}`}>
              <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Descreva sua atividade aqui..."
               maxLength={100}
-              className="w-full bg-slate-800 text-white placeholder-slate-400 text-center text-xl p-3 rounded-lg border-2 border-transparent focus:border-cyan-500 focus:outline-none transition-colors"
+              className="input is-dark-theme has-text-centered is-size-5 p-3"
              />
           </div>
         
@@ -170,17 +173,17 @@ const App: React.FC = () => {
         />
         
         {isPaused && (
-           <button onClick={handleShare} className="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-5 rounded-full transition-colors">
+           <button onClick={handleShare} className="button is-indigo is-rounded is-medium mt-4 has-text-weight-bold">
             Compartilhar Resultado
           </button>
         )}
       </main>
 
-      <footer className={`w-full transition-all duration-300 space-y-6 ${showFocusMode ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+      <footer className={`container ${showFocusMode ? 'is-hidden' : ''}`} style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
         <HistoryPanel history={history} onClear={handleClearHistory} onExport={() => exportToCsv(history)} />
         <AdSenseUnit slot="5825935070" />
         <SeoContent />
-        <div className="text-center text-slate-500 text-sm pb-4">
+        <div className="has-text-centered has-text-slate-500 is-size-7 pb-4">
             Feito com ❤️ por um Engenheiro de Frontend.
         </div>
       </footer>

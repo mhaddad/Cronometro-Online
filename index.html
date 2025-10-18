@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="has-background-slate-900">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -7,8 +7,91 @@
     <title>Cronômetro Online 2.0 - Simples, Rápido e Preciso</title>
     <meta name="description" content="Cronômetro online moderno e gratuito. Meça o tempo de suas atividades com precisão de milissegundos. Simples, rápido, com modo foco, histórico e exportação." />
     <meta name="keywords" content="cronômetro, cronometro online, stopwatch, timer, medir tempo, cronometrar" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5144966648864454" crossorigin="anonymous"></script>
+    <style>
+      :root {
+        --slate-900: #0f172a;
+        --slate-800: #1e293b;
+        --slate-700: #334155;
+        --slate-600: #475569;
+        --slate-500: #64748b;
+        --slate-400: #94a3b8;
+        --slate-300: #cbd5e1;
+        --white: #ffffff;
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --green-500: #22c55e;
+        --green-600: #16a34a;
+        --yellow-500: #eab308;
+        --yellow-600: #ca8a04;
+        --red-500: #ef4444;
+        --red-600: #dc2626;
+        --red-700: #b91c1c;
+        --blue-500: #3b82f6;
+        --blue-600: #2563eb;
+        --indigo-500: #6366f1;
+        --indigo-600: #4f46e5;
+      }
+      html {
+        background-color: var(--slate-900);
+      }
+      .has-background-slate-900 { background-color: var(--slate-900) !important; }
+      .has-background-slate-800 { background-color: var(--slate-800) !important; }
+      .has-background-slate-800-semi { background-color: rgba(30, 41, 59, 0.5) !important; }
+      .has-text-cyan-400 { color: var(--cyan-400) !important; }
+
+      /* Custom Input */
+      .input.is-dark-theme {
+        background-color: var(--slate-800);
+        border-color: transparent;
+        color: var(--white);
+      }
+      .input.is-dark-theme::placeholder { color: var(--slate-400); }
+      .input.is-dark-theme:focus, .input.is-dark-theme:active {
+        border-color: var(--cyan-500) !important;
+        box-shadow: none;
+      }
+
+      /* Custom Buttons */
+      .button.is-green { background-color: var(--green-500); border-color: transparent; color: var(--slate-900); }
+      .button.is-green:hover { background-color: var(--green-600); }
+      .button.is-yellow { background-color: var(--yellow-500); border-color: transparent; color: var(--slate-900); }
+      .button.is-yellow:hover { background-color: var(--yellow-600); }
+      .button.is-red { background-color: var(--red-500); border-color: transparent; color: var(--white); }
+      .button.is-red:hover { background-color: var(--red-600); }
+      .button.is-slate { background-color: var(--slate-700); border-color: transparent; color: var(--white); }
+      .button.is-slate:hover { background-color: var(--slate-600); }
+      .button.is-indigo { background-color: var(--indigo-500); border-color: transparent; color: var(--white); }
+      .button.is-indigo:hover { background-color: var(--indigo-600); }
+      .button.is-red-clear { background-color: var(--red-600); border-color: transparent; color: var(--white); }
+      .button.is-red-clear:hover { background-color: var(--red-700); }
+
+      /* Custom Table */
+      .table.is-dark-theme {
+        background-color: transparent;
+        color: var(--slate-300);
+      }
+      .table.is-dark-theme th {
+        color: var(--white);
+        background-color: var(--slate-800);
+        border-bottom: 1px solid var(--slate-700);
+      }
+      .table.is-dark-theme tr.is-striped {
+        background-color: rgba(51, 65, 85, 0.5); /* slate-700/50 */
+      }
+       .table.is-dark-theme tr {
+        background-color: rgba(51, 65, 85, 0.2); /* slate-700/20 */
+      }
+      .table.is-dark-theme td, .table.is-dark-theme th {
+        border-color: var(--slate-700);
+      }
+      .table-container.is-dark-theme thead {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,7 +130,7 @@
 }
 </script>
 </head>
-  <body class="bg-slate-900">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
